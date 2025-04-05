@@ -1,636 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The S Store - Loungefly & Funko Products</title>
-    <style>
-        /* Reset and basic styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', 'Helvetica', sans-serif;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Header styles */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .top-bar {
-            background-color: #6A5ACD; /* Changed accent color to slateblue */
-            color: white;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 14px;
-        }
-
-        .header-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #6A5ACD; /* Changed accent color to slateblue */
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: #333;
-        }
-
-        .main-nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .main-nav li {
-            margin-left: 30px;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            text-transform: uppercase;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .main-nav a:hover {
-            color: #6A5ACD; /* Changed accent color to slateblue */
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* Hero section */
-        .hero {
-            margin-top: 116px;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background-image: url("/api/placeholder/1200/800");
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: white;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #6A5ACD; /* Changed accent color to slateblue */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #8A7BDD; /* Lighter slateblue for hover */
-        }
-
-        /* Features section */
-        .features {
-            padding: 80px 5%;
-            background-color: white;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #6A5ACD; /* Changed accent color to slateblue */
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-item {
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: #6A5ACD; /* Changed accent color to slateblue */
-        }
-
-        .feature-item h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        /* Products section */
-        .products {
-            padding: 80px 5%;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-image {
-            height: 250px;
-            background-color: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-image img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-info h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .product-category {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        /* About section */
-        .about {
-            padding: 80px 5%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .about-content {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 50px;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            height: 400px;
-            background-image: url("/api/placeholder/600/400");
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-        }
-
-        .about-content h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .about-content p {
-            margin-bottom: 20px;
-        }
-
-        /* Contact section */
-        .contact {
-            padding: 80px 5%;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            text-align: left;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 40px 5% 20px;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 20px;
-        }
-
-        .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: #6A5ACD; /* Changed accent color to slateblue */
-        }
-
-        .footer-column p {
-            margin-bottom: 20px; /* Added margin-bottom here */
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #6A5ACD; /* Changed accent color to slateblue */
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .social-icon:hover {
-            background-color: #6A5ACD; /* Changed accent color to slateblue */
-        }
-
-        .footer-bottom {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            font-size: 14px;
-            color: #999;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .header-main {
-                padding: 15px 20px;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .main-nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                display: none;
-            }
-
-            .main-nav.active {
-                display: block;
-            }
-
-            .main-nav ul {
-                flex-direction: column;
-            }
-
-            .main-nav li {
-                margin: 15px 0;
-            }
-
-            .hero {
-                margin-top: 77px;
-                height: 60vh;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .about {
-                flex-direction: column;
-            }
-
-            .about-content {
-                padding-right: 0;
-                margin-bottom: 40px;
-            }
-        }
-    </style>
-</head>
-<body>
+    <meta name="description" content="{{ website description goes here }}" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <div class="top-bar">
-            Free shipping on orders over $75!
-        </div>
-        <div class="header-main">
-            <a href="#" class="logo">The <span>S</span> Store</a>
-            <button class="mobile-toggle">☰</button>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="top-bar">Free shipping on orders over $75!</div>
+      <div class="header-main">
+        <a href="#" class="logo">The <span>S</span> Store</a>
+        <button class="mobile-toggle">☰</button>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to The S Store</h1>
-            <p>Your premier destination for exclusive Loungefly mini backpacks and Funko collectibles.</p>
-            <a href="#products" class="btn">Explore Collection</a>
-        </div>
+      <div class="hero-content">
+        <h1>Welcome to The S Store</h1>
+        <p>
+          Your premier destination for exclusive Loungefly mini backpacks and
+          Funko collectibles.
+        </p>
+        <a href="#products" class="btn">Explore Collection</a>
+      </div>
     </section>
 
     <section class="features">
-        <h2 class="section-title">Why Choose Us</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">★</div>
-                <h3>Authentic Products</h3>
-                <p>We only offer 100% authentic Loungefly and Funko products. Each item is carefully inspected for quality assurance.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🎁</div>
-                <h3>Exclusive Designs</h3>
-                <p>Find unique and limited edition designs that showcase your favorite characters from Disney, Marvel, Star Wars and more.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">📦</div>
-                <h3>Fast Shipping</h3>
-                <p>Orders are processed within 24 hours and delivered quickly. Free shipping on orders over $75.</p>
-            </div>
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">★</div>
+          <h3>Authentic Products</h3>
+          <p>
+            We only offer 100% authentic Loungefly and Funko products. Each item
+            is carefully inspected for quality assurance.
+          </p>
         </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎁</div>
+          <h3>Exclusive Designs</h3>
+          <p>
+            Find unique and limited edition designs that showcase your favorite
+            characters from Disney, Marvel, Star Wars and more.
+          </p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📦</div>
+          <h3>Fast Shipping</h3>
+          <p>
+            Orders are processed within 24 hours and delivered quickly. Free
+            shipping on orders over $75.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="products" class="products">
-        <h2 class="section-title">Featured Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="/api/placeholder/250/250" alt="Loungefly Mini Backpack">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Loungefly</div>
-                    <h3>Disney Princess Mini Backpack</h3>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="/api/placeholder/250/250" alt="Loungefly Mini Backpack">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Loungefly</div>
-                    <h3>Star Wars The Mandalorian Mini Backpack</h3>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="/api/placeholder/250/250" alt="Funko Pop">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Funko</div>
-                    <h3>Marvel Avengers Funko Pop Collection</h3>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="/api/placeholder/250/250" alt="Loungefly Wallet">
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Loungefly</div>
-                    <h3>Harry Potter Hogwarts Wallet</h3>
-                </div>
-            </div>
+      <h2 class="section-title">Featured Products</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img
+            src="https://placehold.co/250x250"
+            alt="Loungefly Mini Backpack"
+          />
+          <div class="product-info">
+            <div class="product-category">Loungefly</div>
+            <h3>Disney Princess Mini Backpack</h3>
+          </div>
         </div>
+        <div class="product-card">
+          <img
+            src="https://placehold.co/250x250"
+            alt="Loungefly Mini Backpack"
+          />
+          <div class="product-info">
+            <div class="product-category">Loungefly</div>
+            <h3>Star Wars The Mandalorian Mini Backpack</h3>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://placehold.co/250x250" alt="Funko Pop" />
+          <div class="product-info">
+            <div class="product-category">Funko</div>
+            <h3>Marvel Avengers Funko Pop Collection</h3>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://placehold.co/250x250" alt="Loungefly Wallet" />
+          <div class="product-info">
+            <div class="product-category">Loungefly</div>
+            <h3>Harry Potter Hogwarts Wallet</h3>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="about" class="about">
-        <div class="about-content">
-            <h2>About The S Store</h2>
-            <p>The S Store is a specialty retailer dedicated to bringing you the highest quality Loungefly and Funko products. Our passion for pop culture collectibles drives us to curate an exceptional selection of mini backpacks, wallets, and Funko figures that celebrate your favorite characters and franchises.</p>
-            <p>Founded with a vision to provide collectors and fans with authentic merchandise, we take pride in our product knowledge and customer service. We work directly with suppliers to ensure our inventory includes the latest releases and hard-to-find exclusives.</p>
-            <a href="#contact" class="btn">Contact Us</a>
-        </div>
-        <div class="about-image"></div>
+      <div class="about-content">
+        <h2>About The S Store</h2>
+        <p>
+          The S Store is a specialty retailer dedicated to bringing you the
+          highest quality Loungefly and Funko products. Our passion for pop
+          culture collectibles drives us to curate an exceptional selection of
+          mini backpacks, wallets, and Funko figures that celebrate your
+          favorite characters and franchises.
+        </p>
+        <p>
+          Founded with a vision to provide collectors and fans with authentic
+          merchandise, we take pride in our product knowledge and customer
+          service. We work directly with suppliers to ensure our inventory
+          includes the latest releases and hard-to-find exclusives.
+        </p>
+        <a href="#contact" class="btn">Contact Us</a>
+      </div>
+      <div class="about-image"></div>
     </section>
 
     <section id="contact" class="contact">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-form">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" class="form-control" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="Your Email">
-            </div>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" class="form-control" placeholder="Subject">
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message</button>
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Your Name"
+          />
         </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Your Email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            class="form-control"
+            placeholder="Subject"
+          />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            class="form-control"
+            placeholder="Your Message"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>The S Store</h3>
-                <p>Your premier destination for authentic Loungefly and Funko collectibles.</p>
-                <div class="social-links">
-                    <a href="#" class="social-icon">f</a>
-                    <a href="#" class="social-icon">in</a>
-                    <a href="#" class="social-icon">ig</a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <ul class="footer-links">
-                    <li>Email: info@thesstore.com</li>
-                    <li>Phone: (555) 123-4567</li>
-                    <li>Address: 123 Main St, Anytown, USA</li>
-                </ul>
-            </div>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>The S Store</h3>
+          <p>
+            Your premier destination for authentic Loungefly and Funko
+            collectibles.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 The S Store. All Rights Reserved.</p>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
+        <div class="footer-column">
+          <h3>Contact Info</h3>
+          <ul class="footer-links">
+            <li>Email: info@thesstore.com</li>
+            <li>Phone: (555) 123-4567</li>
+            <li>Address: 123 Main St, Anytown, USA</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 The S Store. All Rights Reserved.</p>
+      </div>
     </footer>
 
     <script>
-        // Minimal JavaScript for mobile menu toggle
-        document.querySelector('.mobile-toggle').addEventListener('click', function() {
-            document.querySelector('.main-nav').classList.toggle('active');
+      // Minimal JavaScript for mobile menu toggle
+      document
+        .querySelector(".mobile-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".main-nav").classList.toggle("active");
         });
     </script>
-</body>
+  </body>
 </html>
