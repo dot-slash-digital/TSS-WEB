@@ -258,10 +258,10 @@ header {
 
 .about-image {
   flex: 1;
-  min-width: 300px;
-  height: 500px;
+  max-width: 100%;
+  /* min-width: 300px; */
   /* background-image: url("https://placehold.co/600x400"); */
-  object-fit: cover;
+  /* object-fit: cover; */
   /* background-size: cover;
   background-position: center; */
   border-radius: 10px;
